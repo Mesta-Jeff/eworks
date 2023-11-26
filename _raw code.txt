@@ -1,0 +1,349 @@
+
+
+=========== My Account
+php artisan make:view account.issue-concern
+php artisan make:view account.my-days
+php artisan make:view account.my-attendance
+php artisan make:view account.my-payslip
+php artisan make:view account.print-payslip
+php artisan make:view account.my-profile
+php artisan make:view account.approve-withdrawal
+php artisan make:view account.request-new-contract
+php artisan make:view account.contract-statistics
+php artisan make:view account.request-leave
+php artisan make:view account.request-days
+php artisan make:view account.request-promotion
+php artisan make:view account.request-bank-statement
+php artisan make:view account.dashboard
+
+
+======== system settings
+php artisan make:view ss.view-roles
+php artisan make:view ss.view-permissions
+php artisan make:view ss.set-contract
+php artisan make:view ss.set-payslip
+php artisan make:view ss.set-leave
+php artisan make:view ss.leave-claims
+php artisan make:view ss.set-days
+php artisan make:view ss.view-groups
+php artisan make:view ss.configure-system
+
+
+============ USER
+php artisan make:view user.view-casual-workers
+php artisan make:view user.view-contract-workers
+php artisan make:view user.permanent-workers
+php artisan make:view user.assign-permission
+php artisan make:view user.effect-promotion
+
+
+=============== contract
+php artisan make:view contract.sign-contract
+php artisan make:view contract.terminate-contract
+php artisan make:view contract.pending-request
+php artisan make:view contract.contract-review
+php artisan make:view contract.batch-assignment
+php artisan make:view contract.issue-statement
+php artisan make:view contract.extend-contract-individual
+php artisan make:view contract.extend-group-contract
+
+
+
+======= request
+php artisan make:view requests.attendance-list
+php artisan make:view requests.workers-records
+php artisan make:view requests.loans
+php artisan make:view requests.account-minute
+php artisan make:view requests.promotion-claims
+php artisan make:view requests.leave-claims
+php artisan make:view requests.excuse-duties
+php artisan make:view requests.requested-days
+
+
+=============== leave
+php artisan make:view leave.leave-requests
+php artisan make:view leave.requests-days
+php artisan make:view leave.pending-leaves
+php artisan make:view leave.due-leaves
+php artisan make:view leave.enforce-leave
+php artisan make:view leave.re-schedule-leave
+
+
+============ attendance
+php artisan make:view attend.upload-attendance
+php artisan make:view attend.remark-attendance
+php artisan make:view attend.review-attendance
+php artisan make:view attend.check-days-worker
+php artisan make:view attend.check-group-days
+php artisan make:view attend.days-claims
+php artisan make:view attend.generate-timetable
+
+
+============= loan
+php artisan make:view loan.process-loan
+php artisan make:view loan.approve-loan
+php artisan make:view loan.loan-statements
+
+============== slip
+php artisan make:view slip.approve-payslip
+php artisan make:view slip.financial-ticket
+php artisan make:view slip.generate-pincode
+php artisan make:view slip.prepare-payslip
+php artisan make:view slip.release-salary
+php artisan make:view slip.release-pincode
+php artisan make:view slip.verify-payslip
+php artisan make:view slip.view-ticket
+php artisan make:view slip.withheld-payslip
+
+
+
+
+
+1. Personal Information:
+
+TagNumber
+Firstname
+Lastname
+Gender
+Hometown
+Nationality
+Region
+District
+Town
+Date of Birth
+Town of Birth
+District of Birth
+Region of Birth
+Country of Birth
+Marital Status
+Languages
+Ethnicity
+Religion
+Blood Type
+SSNIT
+Bank
+Contact Details
+Phone
+Tel
+Email
+current address
+District
+Region
+Landmark
+GPS (if any)
+Emergency Contact
+Name
+Address
+Relationship
+
+
+2. Educational Background (optional)
+
+Level
+School
+location
+cert
+
+3. Driver's License Details (optional)
+
+Name
+number
+expireDate
+class
+type
+
+
+4. Medical Information (optional)
+
+Health Conditions
+Allergies
+
+5. Next of Kin (optional)
+
+
+
+
+
+
+
+
+//IMPORTING EXCEL FILE
+// $('#btnImport').on('click', function () {
+//     var fileInput = $('<input type="file" style="display:none" />');
+//     $('body').append(fileInput);
+//     fileInput.trigger('click');
+//     fileInput.on('change', function (e) {
+//         var file = e.target.files[0];
+//         var reader = new FileReader();
+//         reader.onload = function (e) {
+//             var data = new Uint8Array(e.target.result);
+//             var workbook = XLSX.read(data, { type: 'array' });
+//             var sheetName = workbook.SheetNames[0];
+//             var sheet = workbook.Sheets[sheetName];
+//             var dataArray = XLSX.utils.sheet_to_json(sheet, { header: 1, range: 2 });
+//             var tbody = $('#exporting-table tbody');
+//             tbody.empty();
+//             $.each(dataArray, function (index, row) {
+//                 var tr = $('<tr>');
+//                 $('<td>').text(index + 1).appendTo(tr);
+//                 $.each(row, function (key, value) {
+//                     $('<td>').text(value).appendTo(tr);
+//                 });
+//                 tr.appendTo(tbody);
+//             });
+//             fileInput.remove();
+//         };
+//         reader.readAsArrayBuffer(file);
+//     });
+//     fileInput.on('focusout', function () {
+//         fileInput.remove();
+//     });
+// });
+
+
+
+
+$('#btnImport').on('click', function () {
+    var fileInput = $('<input type="file" style="display:none" />');
+    $('body').append(fileInput);
+    fileInput.trigger('click');
+    fileInput.on('change', function (e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var data = new Uint8Array(e.target.result);
+            var workbook = XLSX.read(data, { type: 'array' });
+            var sheetName = workbook.SheetNames[0];
+            var sheet = workbook.Sheets[sheetName];
+            var dataArray = XLSX.utils.sheet_to_json(sheet, { header: 1, range: 2 });
+            var tbody = $('#exporting-table tbody');
+            tbody.empty();
+            $.each(dataArray, function (index, row) {
+                var tr = $('<tr>');
+                $('<td>').text(index + 1).appendTo(tr);
+                $.each(row, function (key, value) {
+                    
+                    if ([8, 9, 10, 11, 15, 16, 17, 18, 19, 25, 26, 33, 35].includes(key)) {
+
+                        value = "ReplacementValue";
+                    }
+                    $('<td>').text(value).appendTo(tr);
+                });
+                tr.appendTo(tbody);
+            });
+            fileInput.remove();
+        };
+        reader.readAsArrayBuffer(file);
+    });
+    fileInput.on('focusout', function () {
+        fileInput.remove();
+    });
+});
+
+
+
+
+
+    phone
+    tel
+    email
+    current_country
+    current_region
+    current_district
+    landmark
+    gps
+
+    education_level
+    school
+    location
+    certification
+    driver_license_name
+    driver_license_number
+    driver_license_expire_date
+    driver_license_class
+    driver_license_type
+    health_conditions
+    allergies
+
+    emegency_name
+    emegency_address
+    emergency_phone
+    emegency_relationship
+    role
+    designation
+
+
+
+    $('#picture').change(function () 
+        {
+            const file = this.files[0];
+            if (file && file.type.startsWith('image/') && file.size <= 2 * 1024 * 1024) {
+                displayImagePreview(file);
+            } else {
+                showAlert('Invalid File', 'Please select a valid image file (max 2MB).');
+                this.value = '';
+                $('#image-preview').hide();
+            }
+        });
+
+        function showAlert(title, message) {
+            Swal.fire({
+                icon: 'error',
+                title: title,
+                text: message,
+            });
+        }
+
+        function displayImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $('#image-preview').attr('src', e.target.result).show();
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+
+SELECT w.id, w.first_name, w.last_name, w.initials, w.nickname, w.gender, 
+    w.marital_status, w.religion, w.blood, c.name as nationality, r.name as region, 
+    d.name as district, t.name as hometown, w.ethnicity, w.languages, w.date_of_birth, 
+    cb.name as country_of_birth, rb.name as region_of_birth, db.name as district_of_birth, 
+    tb.name as place_of_birth, b.name as bank, w.account_number, w.ssnit, w.phone, 
+    w.tel, w.email, cd.name as current_district, cr.name as current_region, w.landmark, 
+    w.gps, w.emergency_name, w.emergency_address, w.emergency_phone, 
+    w.emergency_relationship, ro.name as role, w.designation,w.national_identities,w.id_numbers, w.picture, 
+    w.status, o.education_level, o.school, 
+    o.location, o.certification, o.driver_license_name, 
+    o.driver_license_number, o.driver_license_expire_date, 
+    o.driver_license_class, o.driver_license_type, 
+    o.health_conditions, o.allergies,co.tag_number,co.track FROM workers w JOIN optional_information o ON w.id = o.worker_id JOIN banks b ON w.bank_id = b.id JOIN countries c ON w.nationality = c.id JOIN districts d ON w.district_id = d.id JOIN regions r ON w.region_id = r.id JOIN towns t ON w.hometown = t.id JOIN countries cb on cb.id =w.country_of_birth JOIN regions rb on rb.id = w.region_of_birth JOIN districts db on db.id =w.district_of_birth JOIN towns tb on tb.id = w.place_of_birth JOIN regions cr on cr.id = w.current_region JOIN districts cd on cd.id = w.current_district JOIN roles ro ON ro.id = w.role_id LEFT JOIN contracts co on co.worker_id = w.id WHERE co.track IS NULL OR co.tag_number IS NULL ORDER BY w.id DESC;
+    
+    
+
+
+$pendingCasuals = DB::table('workers as w')
+    ->select(
+        'w.id', 'w.first_name', 'w.last_name', 'w.initials',
+        'w.nickname', 'w.gender', 'w.marital_status', 'w.religion',
+        'w.blood', 'c.name as nationality', 'r.name as region',
+        'd.name as district', 't.name as hometown', 'w.ethnicity',
+        'b.name as bank', 'w.account_number', 'w.ssnit', 'w.phone',
+        'w.tel', 'w.email', 'rr.name as role', 'w.designation',
+        'w.status', 'co.tag_number', 'co.track','w.national_identities', 
+        'w.id_numbers', DB::raw("TO_BASE64(w.picture) as imgBase64"),
+    )
+    ->join('banks as b', 'w.bank_id', '=', 'b.id')
+    ->join('countries as c', 'w.nationality', '=', 'c.id')
+    ->join('districts as d', 'w.district_id', '=', 'd.id')
+    ->join('regions as r', 'w.region_id', '=', 'r.id')
+    ->join('towns as t', 'w.hometown', '=', 't.id')
+    ->join('roles as rr', 'w.role_id', '=', 'rr.id')
+    ->leftJoin('contracts as co', 'co.worker_id', '=', 'w.id')
+    ->where(function ($query) {
+        $query->whereNull('co.track')
+            ->orWhereNull('co.tag_number');
+    })
+    ->where('rr.name', 'Casual-Worker')
+    ->orderBy('w.id', 'desc')
+    ->get();
+return response()->json(['pendingCasuals' => $pendingCasuals]);
