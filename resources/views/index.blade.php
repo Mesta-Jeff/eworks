@@ -1463,7 +1463,7 @@
                       </div>
                     </div>
                   </a>
-                  <a href="{{ route('login')}}">
+                  <a href="{{ route('login')}}" id="come">
                     <div class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation logo hidden md:flex my-4 align-items-center justify-content-center">
                       <div class="hero-box-inner text-center"><i class="pi pi-home" style="font-size: 30px;"></i>
                         <div class="name"><b class="font-bold">MAIN HOME</b><span>Login To IWork</span></div>
