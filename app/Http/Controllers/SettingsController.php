@@ -214,6 +214,12 @@ class SettingsController extends Controller
             }
         }
     }
+
+    public function fetch_group(Request $request)
+    {
+        $groups = DB::table('groups')->orderBy('name', 'asc') ->get();
+        return response()->json(['groups' => $groups]);
+    }
     // ================== END OF  GROUP ==========================
 
 

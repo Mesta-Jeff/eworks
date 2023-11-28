@@ -44,20 +44,17 @@
                         <li class="nav-item">
                             <a href="#home-b1" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
                                 <i class="mdi mdi-gamepad-circle d-md-none d-block"></i>
-                                <span class="d-none d-md-block" id="pending-count">Pending Workers</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#profile-b1" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
-                                <i class="mdi mdi-account-details-outline d-md-none d-block"></i>
-                                <span class="d-none d-md-block">List of Workers</span>
+                                <span class="d-none d-md-block" id="pending-count">List of Workers</span>
                             </a>
                         </li>
                     </ul>
                     
                     <div class="tab-content">
                         <div class="tab-pane show active" id="home-b1">
-                            <div class="table-responsive">
+
+                            <h4 class="mb-2">PENDING WORKERS YET TO BE SIGNED ON A CONTRACT</h4>
+                            <hr>
+                            <div class="table-responsive mb-3">
                                 <table id="pending-table" class="table align-middle table-nowrap mb-0">
                                     <thead>
                                         <tr>
@@ -121,8 +118,9 @@
                                     <tbody></tbody>
                                 </table>
                             </div>
-                        </div>
-                        <div class="tab-pane" id="profile-b1">
+
+                            <h4 class="mb-2">LIST OF CASUALS ON CONTRACT</h4>
+                            <hr>
                             <div class="table-responsive">
                                 <table id="workers-table" class="table align-middle table-nowrap mb-0">
                                     <thead>
@@ -255,6 +253,7 @@
                     </div>
                 </form>
                 <hr>
+                
                 <div class="table-responsive">
                     <table id="exporting-table" class="table align-middle table-nowrap mb-0">
                         <thead>
@@ -314,6 +313,7 @@
                         <tbody></tbody>
                     </table>
                 </div>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
@@ -1526,8 +1526,9 @@
             $('#bulk-form')[0].reset();
             $('#batch-modal').modal('show');
         });
-
-
+        
+    
+       
         //PENDING CASUALS
         dataTable = $('#pending-table').DataTable({
             ajax: {
@@ -1562,7 +1563,7 @@
                             '</a>' +
                             '<div class="dropdown-menu dropdown-menu-end">' +
                                 '<a href="#" class="dropdown-item"><span class="mdi mdi-lock"></span> Contract Status</a>' +
-                                '<a href="#" class="dropdown-item"><span class="mdi mdi-printer"></span> Print Form</a>' +
+                                '<a href="{{ route('complied-information')}}" class="dropdown-item"><span class="mdi mdi-printer"></span> Print Form</a>' +
                                 '<a href="#" class="dropdown-item text-danger"><span class="mdi mdi-delete"></span> Remove Person</a>';
                             '</div>' +
                             '</div>';
@@ -1641,7 +1642,7 @@
         });
 
         //WORKERS ON CASUALS
-        table = $('#workers-table').DataTable({
+        dataTable = $('#workers-table').DataTable({
             ajax: {
                 url: '{{ route("user.view-casual-workers") }}',
                 dataSrc: 'casuals'

@@ -100,13 +100,12 @@ class WorkersController extends Controller
                 ->join('towns as tb', 'tb.id', '=', 'w.place_of_birth')
                 ->join('regions as cr', 'cr.id', '=', 'w.current_region')
                 ->join('districts as cd', 'cd.id', '=', 'w.current_district')
+                ->leftJoin('contracts as co', 'co.worker_id', '=', 'w.id')
                 ->join('roles as ro', 'ro.id', '=', 'w.role_id')
-                ->leftJoin('contracts as co', function($join) {
-                    $join->on('co.worker_id', '=', 'w.id')
-                        ->whereNull('co.track')
+                ->where(function($query) {
+                    $query->whereNull('co.track')
                         ->orWhereNull('co.tag_number');
                 })
-                ->where('ro.name', 'Casual-Worker')
                 ->orderByDesc('w.id')
                 ->get();
             
@@ -218,9 +217,6 @@ class WorkersController extends Controller
         }
         return view('user.permanent-workers');
     }
-
-
-
 
     public function assignPermission()
     {
@@ -425,6 +421,10 @@ class WorkersController extends Controller
         } 
     }
 
-
+    public function compliedInformation() 
+    {
+        return view('user.complied-informations');
+    }
+    
 
 }

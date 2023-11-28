@@ -104,6 +104,7 @@ Route::get('user/view-contract-workers', [WorkersController::class, 'viewContrac
 Route::get('user/view-permanent-workers', [WorkersController::class, 'viewPermanentWorkers'])->name('user.view-permanent-workers');
 Route::get('user/assign-permission', [WorkersController::class, 'assignPermission'])->name('user.assign-permission');
 Route::get('user/effect-promotion', [WorkersController::class, 'effectPromotion'])->name('user.effect-promotion');
+Route::get('user/complied-information', [WorkersController::class, 'compliedInformation'])->name('complied-information');
 
 
 
@@ -187,3 +188,7 @@ Route::post('/add-casual', [WorkersController::class, 'add_casual'])->name('add-
 Route::post('/add-casual-bulk', [WorkersController::class, 'add_casual_bulk'])->name('add-casual-bulk');
 Route::post('/update-casual', [WorkersController::class, 'update_casual'])->name('update-casual');
 Route::post('/distroy-casual', [WorkersController::class, 'distroy_casual'])->name('distroy-casual');
+
+
+
+Route::post('/issue-new-contract', [ContractController::class, 'issue_contract'])->name('issue-new-contract');

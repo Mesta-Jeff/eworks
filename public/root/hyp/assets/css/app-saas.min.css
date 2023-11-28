@@ -315,7 +315,7 @@ h5,
 h6 {
     margin-top: 0;
     margin-bottom: 10px;
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1.1;
     color: var(--ct-heading-color)
 }
@@ -16308,7 +16308,24 @@ fieldset:disabled .btn {
     }
 }
 
+
+
 @media print {
+    
+    @page {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    body {
+        padding-top: 72px;
+        padding-bottom: 72px ;
+        box-shadow: none;
+    }
+
+    /* @page { size: auto;  margin: 0mm; } */
+
+   
+
     .d-print-inline {
         display: inline !important
     }
@@ -16356,7 +16373,11 @@ fieldset:disabled .btn {
     .d-print-none {
         display: none !important
     }
+    
 }
+
+
+
 
 .logo-lg img {
     height: var(--ct-logo-lg-height)

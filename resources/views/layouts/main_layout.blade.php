@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head >
     <meta charset="utf-8" />
     <title>@yield('title') | eWork Environtment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="SkaiTheme" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
 
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('root/hyp/assets/images/favicon.ico') }}">
+
 
     <!-- Theme Config Js -->
     <script src="{{ asset('root/hyp/assets/js/hyper-config.js') }}"></script>
@@ -663,7 +662,7 @@
         <!-- ============================================================== -->
 
 
-        <section>
+        <section class="d-print-none">
             <a href="javascript:void(0);" class="right-bar-toggle demos-show-btn" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="View Users online since the last 30 mins" title="eWork Notice">
                 <i class="ri-group-fill"></i> &nbsp;Users
             </a>
