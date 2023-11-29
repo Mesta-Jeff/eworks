@@ -20,6 +20,10 @@ class OptionalInformation extends Model
         'driver_license_expire_date',
         'driver_license_class',
         'driver_license_type',
+        'doc1',
+        'doc2',
+        'doc3',
+        'doc4',
         'health_conditions',
         'allergies',
     ];

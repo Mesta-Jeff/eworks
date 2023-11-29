@@ -6,12 +6,28 @@
 
 @section('additional-css')
     <link rel="stylesheet" type="text/css" href="{{ asset('root/css/multiple-select.css') }}">
+    <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
 @endsection
 
 @section('content')
     <!-- Start Content-->
 <div class="container-fluid">
 
+    <style>
+
+		img {
+		  	display: block;
+		  	max-width: 100%;
+		}
+
+		.preview {
+  			overflow: hidden;
+  			width: 160px; 
+  			height: 160px;
+  			margin: 10px;
+  			border: 1px solid red;
+		}
+		</style>
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -377,7 +393,7 @@
                                 
                                     <div class="tab-content b-0 mb-0">
 
-                                        <div id="bar" class="progress mb-3" style="height: 5px;">
+                                        <div id="bar" class="progress" style="height: 5px;">
                                             <div class="bar progress-bar progress-bar-striped progress-bar-animated bg-success"></div>
                                         </div>
 
@@ -400,6 +416,38 @@
                                                             <input type="text" class="form-control" id="id_numbers" name="id_numbers" placeholder="eg. 85220932,GHA-625519-6" required>
                                                         </div>
                                                     </div>
+
+                                                    <div class="container mb-4">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-12 text-center">
+                                                                <strong class="col-md-12">Upload Related Documents</strong>
+                                                                <hr>
+                                                                <div class="d-inline-block">
+                                                                    <img id="image-preview" class="img-fluid img-thumbnail" style="display: none;">
+                                                                </div>
+
+                                                                <div class="row docs">
+                                                                    <div class="col-md-3 mb-2">
+                                                                        <input type="file" class="form-control" id="doc1" accept="application/pdf" style="display: none;">
+                                                                        <button class="btn btn-outline-primary upload-btn" data-target="doc1"><i class="mdi mdi-upload mx-1"></i>Upload NHIS Front</button>
+                                                                    </div>
+                                                                    <div class="col-md-3 mb-2">
+                                                                        <input type="file" class="form-control" id="doc2" accept="application/pdf" style="display: none;">
+                                                                        <button class="btn btn-outline-primary upload-btn" data-target="doc2"><i class="mdi mdi-upload mx-1"></i>Upload NHIS Back</button>
+                                                                    </div>
+                                                                    <div class="col-md-3 mb-2">
+                                                                        <input type="file" class="form-control" id="doc3" accept="application/pdf" style="display: none;">
+                                                                        <button class="btn btn-outline-primary upload-btn" data-target="doc3"><i class="mdi mdi-upload mx-1"></i>Other Document 1</button>
+                                                                    </div>
+                                                                    <div class="col-md-3 mb-2">
+                                                                        <input type="file" class="form-control" id="doc4" accept="application/pdf" style="display: none;">
+                                                                        <button class="btn btn-outline-primary upload-btn" data-target="doc4"><i class="mdi mdi-upload mx-1"></i>Other Document 2</button>
+                                                                    </div>
+                                                                </div>                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+
                                                     <div class="row mb-3">
                                                         <label class="col-md-2 col-form-label" for="first_name">First Name</label>
                                                         <div class="col-md-4">
@@ -735,24 +783,30 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-12 text-center mb-2">
-                                                        <img id="image-preview" class="img-fluid img-thumbnail rounded-circle" style="display: none; max-width: 30%; height: 30%;">
-                                                    </div>
-                                                    <div class="row">
-                                                        <label class="col-md-2 col-form-label" for="picture">1080 x 1080 px</label>
-                                                        <div class="col-md-9 mb-2">
-                                                            <input type="file" class="form-control" id="picture" name="picture" accept="image/*">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
+                                                    <div class="container mt-4 mb-4">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-6 text-center">
+                                                                <div class="d-inline-block">
+                                                                    <img id="image-preview" class="img-fluid img-thumbnail" style="display: none;">
+                                                                </div>
 
-                                            <ul class="list-inline wizard mb-0">
-                                                <li class="next list-inline-item float-end">
-                                                    
-                                                    <a href="javascript:void(0);" class="btn btn-info">Add More Info <i class="mdi mdi-arrow-right ms-1"></i></a>
-                                                </li>
-                                            </ul>
+                                                                <div class="row mt-4 tables">
+                                                                    <div class="col-md-12 mb-2">
+                                                                        <input type="file" class="form-control" id="upload_image" accept="image/*" style="display: none;">
+                                                                        <button class="btn btn-primary" id="load-image"><i class="mdi mdi-upload"></i>Upload Image</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                              
+                                                </div>
+
+                                                <ul class="list-inline wizard mb-0">
+                                                    <li class="next list-inline-item float-end">
+                                                        <a href="javascript:void(0);" class="btn btn-info">Add More Info <i class="mdi mdi-arrow-right ms-1"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div> 
                                         </div>
 
                                         <div class="tab-pane" id="addresss">
@@ -917,7 +971,7 @@
                                         </div>
 
                                         <div class="tab-pane" id="optional">
-                                            <div class="row">
+                                            <div class="row" style="max-height: 450px; overflow-y: auto;">
                                                 <div class="col-12">
                                                     
                                                    <!-- Educational Background -->
@@ -1019,6 +1073,7 @@
                                                         </div>
                                                     </div>
 
+                                    
                                                     <!-- Medical Information -->
                                                     <div class="row mb-3">
                                                         <label class="col-md-2 col-form-label" for="health_conditions">Health Conditions</label>
@@ -1034,19 +1089,19 @@
                                                             <textarea id="allergies" name="allergies" class="form-control form-control-lg" rows="3" onselectstart="return false" onpaste="return false;" oncopy="return false" oncut="return false" ondrag="return false" ondrop="return false" autocomplete="off" nullable></textarea>
                                                         </div>
                                                     </div>
-
                                                     
                                                 </div>
-                                            </div>
-                                            <ul class="pager wizard mb-0 list-inline">
+
+                                                <ul class="pager wizard mb-0 list-inline">
                                                 
-                                                <li class="next list-inline-item float-end">
-                                                    <button type="button" class="btn btn-info">Next <i class="mdi mdi-arrow-right ms-1"></i></button>
-                                                </li>
-                                                <li class="previous list-inline-item float-end mx-2">
-                                                    <button type="button" class="btn btn-info"><i class="mdi mdi-arrow-left me-1 mx-2"></i> Previous</button>
-                                                </li>
-                                            </ul>
+                                                    <li class="next list-inline-item float-end">
+                                                        <button type="button" class="btn btn-info">Next <i class="mdi mdi-arrow-right ms-1"></i></button>
+                                                    </li>
+                                                    <li class="previous list-inline-item float-end mx-2">
+                                                        <button type="button" class="btn btn-info"><i class="mdi mdi-arrow-left me-1 mx-2"></i> Previous</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
 
                                         <div class="tab-pane" id="finish-2">
@@ -1095,11 +1150,40 @@
     </div>
 </div>
 
+	
+<div class="modal fade" id="imge-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crop Image Before Upload</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img src="" id="sample_image" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="crop" class="btn btn-primary">Crop</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>	
 
 
 <script src="{{ asset('root/dek/bower_components/jquery/js/jquery.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-
+<script src="https://unpkg.com/cropperjs"></script>
     
 
 
@@ -1138,6 +1222,12 @@
 
     $(document).ready(function ()
     {
+
+        var $modal = $('#imge-modal');
+        var image = document.getElementById('sample_image');
+        var cropper;
+
+        
         var dataTable = "";
         var table = "";
         var extable = "";
@@ -1157,6 +1247,37 @@
         var minExpiryDate = currentDate.getFullYear() + '-' + 
         ('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' +'01';
         $('#driver_license_expire_date').attr('min', minExpiryDate);
+
+
+        $('.upload-btn').click(function() {
+            var targetId = $(this).data('target');
+            $(this).closest('.docs').find('#' + targetId).click();
+        });
+
+        $('.docs input[type="file"]').change(function(event) {
+            var files = event.target.files;
+            var validateFile = function(file) {
+                var allowedType = 'application/pdf';
+                var maxFileSize = 2 * 1024 * 1024;
+                return file.type === allowedType && file.size <= maxFileSize;
+            };
+
+            if (files.length > 0 && validateFile(files[0])) {
+                handleSuccessfulUpload($(this).siblings('.upload-btn'));
+            } else {
+                Swal.fire({
+                    icon: 'error',title: 'Invalid File',
+                    text: 'Please upload a PDF file not exceeding 2MB.',
+                });
+                $(this).val('');
+            }
+        });
+
+        function handleSuccessfulUpload(button) {
+            button.removeClass('btn-outline-primary').addClass('btn-success');
+        }
+
+
 
 
         //GETTING COUNTRIES
@@ -1896,7 +2017,12 @@
             var buttonElement = $(this);
             buttonElement.html('<i class="fa fa-spinner fa-spin"></i> Please wait... ').attr('disabled', true);
 
+            var base64data = $('#image-preview').attr('src').split(',')[1];
+            var blob = b64toBlob(base64data, 'image/png');
+
             var formData = new FormData($('#single-form')[0]);
+            formData.append('picture', blob);
+
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             var headers = {
                 'X-CSRF-TOKEN': csrfToken
@@ -1998,18 +2124,74 @@
         });
 
         //PICTURE CHANGE
-        $('#picture').change(function () 
-        {
-            const file = this.files[0];
-            if (file && file.type.startsWith('image/') && file.size <= 2 * 1024 * 1024) {
-                displayImagePreview(file);
-            } else {
-                showAlert('Invalid File', 'Please select a valid image file (max 2MB).');
-                this.value = '';
-                $('#image-preview').hide();
+        $('#load-image').click(function () {
+            $('#upload_image').click();
+        });
+        $('#upload_image').change(function (event) {
+            const fileInput = $(this);
+            const file = event.target.files?.[0];
+            if (!file) {
+                showAlert('Error', 'Please select an image file.');
+                fileInput.val(null);
+                $('#image-preview').attr('src', null);
+                return;
             }
+            if (!file.type.startsWith('image/') || file.size > 2 * 1024 * 1024) {
+                showAlert('Error', 'Please select a valid image file (e.g., JPEG, PNG) within 2MB.');
+                fileInput.val(null);
+                $('#image-preview').attr('src', null);
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = () => {
+                image.src = reader.result;
+                $modal.modal('show');
+            };
+            reader.readAsDataURL(file);
         });
 
+
+        //CALLING THE CROPPING MODAL
+        $modal.on('shown.bs.modal', function() {
+            cropper = new Cropper(image, {
+                aspectRatio: 1,
+                viewMode: 1,
+                preview:'.preview'
+            });
+            }).on('hidden.bs.modal', function(){
+                cropper.destroy();
+                cropper = null;
+        });
+
+        //function to crop the selected image
+        $('#crop').click(function(){
+
+            var requiredWidth = 35; 
+            var requiredHeight = 45;
+
+            var pixelsPerMM = 3;
+            var widthInPixels = requiredWidth * pixelsPerMM;
+            var heightInPixels = requiredHeight * pixelsPerMM;
+
+            canvas = cropper.getCroppedCanvas({
+                width: widthInPixels,
+                height: heightInPixels
+            });
+
+            canvas.toBlob(function(blob){
+                url = URL.createObjectURL(blob);
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = function(){
+                    var base64data = reader.result;
+                    $('#image-preview').attr('src', base64data);
+                    $('#image-preview').show();
+                    $modal.modal('hide');
+                };
+            });
+        });
+
+        //Showing universal message
         function showAlert(title, message) {
             Swal.fire({
                 icon: 'error',
@@ -2018,12 +2200,28 @@
             });
         }
 
-        function displayImagePreview(file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                $('#image-preview').attr('src', e.target.result).show();
-            };
-            reader.readAsDataURL(file);
+        // Function to convert base64 to Blob
+        function b64toBlob(b64Data, contentType, sliceSize) {
+            contentType = contentType || '';
+            sliceSize = sliceSize || 512;
+
+            var byteCharacters = atob(b64Data);
+            var byteArrays = [];
+
+            for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                var byteNumbers = new Array(slice.length);
+                for (var i = 0; i < slice.length; i++) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+
+                var byteArray = new Uint8Array(byteNumbers);
+                byteArrays.push(byteArray);
+            }
+
+            var blob = new Blob(byteArrays, { type: contentType });
+            return blob;
         }
 
     });

@@ -24,6 +24,11 @@ return new class extends Migration
             $table->date('driver_license_expire_date')->nullable();
             $table->string('driver_license_class')->nullable();
             $table->string('driver_license_type')->nullable();
+            
+            $table->binary('doc1')->nullable();
+            $table->binary('doc2')->nullable();
+            $table->binary('doc3')->nullable();
+            $table->binary('doc4')->nullable();
 
             // Medical Information
             $table->string('health_conditions')->nullable();
