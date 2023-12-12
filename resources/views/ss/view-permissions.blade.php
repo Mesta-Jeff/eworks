@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-5">
-                            <a id="btnNew" href="#" class="btn btn-outline-success mb-2 btn-sm rounded-2" >Add New Record</a>
+                            <button id="btnNew" type="button" class="btn btn-outline-success mb-2 btn-sm rounded-2" >Add New Record</button>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                     <input type="hidden" id="gottenid" />
                     <div class="row g-9">
                         <div class="col-md-12 fv-row">
-                            <select id="permission" class="form-select form-select-sm mb-2">
+                            <select id="permission" class="select2 form-control mb-2" data-toggle="select2">
                                 <option value="" selected disabled>---- Select Option ----</option>
                             
                                 <!-- Full Settings Group -->
@@ -171,7 +171,7 @@
                         </div>
                         <div class="form-outline col-md-12 fv-row mb-2">
                             <label for="status" class="form-label">What can the permission do in the system</label>
-                            <select class="form-select form-select-sm" id="action">
+                            <select class="select2 form-control mb-2" data-toggle="select2" id="action">
                                 <option value="" selected disabled>---- Select Option ----</option>
                                 <option value="Specific">Specific</option>
                                 <option value="[*]">Everything</option>
@@ -179,7 +179,7 @@
                         </div>
                         <div class="mb-1" style="display: none;" id="state-view">
                             <label for="status" class="form-label">Select Status</label>
-                            <select class="form-select" name="stat" id="stat">
+                            <select class="select2 form-control mb-2" data-toggle="select2" name="stat" id="stat">
                                 <option value="Active">Active</option>
                                 <option value="InActive">InActive</option>
                             </select>

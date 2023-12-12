@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-sm-5">
-                            <a id="btnNew" href="#" class="btn btn-outline-success mb-2 btn-sm rounded-2" >Add New Record</a>
+                            <button type="button" id="btnNew" class="btn btn-outline-success mb-2 btn-sm rounded-2" >Add New Record</button>
                         </div>
                     </div>
 
@@ -65,12 +65,12 @@
             <div class="modal-header">
                 <h4 class="modal-title" id="modal-title">..</h4>
             </div>
-            <form id="my-form" method="post" class="form-horizontal" enctype="multipart/form-data">
+            <form id="my-form" method="post" action="save_data.php" class="form-horizontal" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" id="gottenid" />
                     <div class="row g-9">
                         <div class="col-md-12 fv-row">
-                            <select id="role" class="form-select form-select-sm mb-2">
+                            <select id="role" class="select2 form-control mb-2" data-toggle="select2">
                                 <option value="" selected disabled>---- Select Option ----</option>
                                 <option value="Casual-Worker">Casual Worker</option>
                                 <option value="Contract-Worker">Contract Worker</option>
@@ -196,6 +196,7 @@
                 data: formData,
                 processData: false,
                 contentType: false,
+
                 success: function(response) {
                     console.log('Success Response:', response);
                     buttonElement.prop('disabled', false).text('Proceed').css('cursor', 'pointer');

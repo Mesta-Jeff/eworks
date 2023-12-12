@@ -27,7 +27,8 @@
   			margin: 10px;
   			border: 1px solid red;
 		}
-		</style>
+	</style>
+    
     <!-- start page title -->
     <div class="row">
         <div class="col-12">

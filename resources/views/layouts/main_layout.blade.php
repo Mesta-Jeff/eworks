@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-layout-mode="detached">
 
 <head >
     <meta charset="utf-8" />
@@ -14,16 +14,21 @@
 
 
     <!-- Theme Config Js -->
-    <script src="{{ asset('root/hyp/assets/js/hyper-config.js') }}"></script>
-    <link href="{{ asset('root/hyp/assets/css/app-saas.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
-    <link href="{{ asset('root/hyp/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('root/hyp/assets/vendor/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <script src="{{ asset('root/hyp/assets/js/hyper-config.js') }}"></script>
 
     {{-- OTHERS THEMES --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('root/dek/assets/icon/feather/css/feather.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('root/dek/assets/icon/themify-icons/themify-icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('root/dek/assets/icon/icofont/css/icofont.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('root/dek/assets/icon/font-awesome/css/font-awesome.min.css') }}">
+
+    
+
+    <link href="{{ asset('root/hyp/assets/css/app-saas.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="{{ asset('root/hyp/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    
 
     <link rel="stylesheet" type="text/css" href="{{ asset('root/dek/assets/css/component.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('root/dek/bower_components/sweetalert/css/sweetalert.css') }}">
@@ -68,7 +73,8 @@
                         <!-- Logo light -->
                         <a href="" class="logo-light">
                             <span class="logo-lg">
-                                <img src="{{ asset('root/hyp/assets/images/logo.png') }}" alt="logo">
+                                <img src="{{ asset('root/hyp/assets/images/logo-sm.png') }}" alt="logo">
+                                <strong style="font-size: 22px; font-weight: bold; color: white; font-family: 'Segoe UI';">e</strong><span class="logo-lg-text-dark" style="font-family: 'Segoe UI'; color: white;">Work</span>
                             </span>
                             <span class="logo-sm">
                                 <img src="{{ asset('root/hyp/assets/images/logo-sm.png') }}" alt="small logo">
@@ -80,7 +86,8 @@
                         <!-- Logo Dark -->
                         <a href="" class="logo-dark">
                             <span class="logo-lg">
-                                <img src="{{ asset('root/hyp/assets/images/logo-dark.png') }}" alt="dark logo">
+                                <img src="{{ asset('root/hyp/assets/images/logo-dark-sm.png') }}" alt="dark logo">
+                                <strong style="font-size: 22px; font-weight: bold; color: #4C52A3; font-family: 'Segoe UI';">e</strong><span class="logo-lg-text-dark" style="font-family: 'Segoe UI'; color: #4C52A3;">Work</span>
                             </span>
                             <span class="logo-sm">
                                 <img src="{{ asset('root/hyp/assets/images/logo-dark-sm.png') }}" alt="small logo">
@@ -344,8 +351,7 @@
                 <a href="" class="logo text-center">
                     <span class="logo-lg">
                         <img src="{{ asset('root/hyp/assets/images/logo-sm.png') }}" alt="" height="25">
-                        <strong class="text-white" style="font-size: 22px; weight: bold">e</strong><span
-                            class="logo-lg-text-light">Work</span>
+                        <strong style="font-size: 22px; font-weight: bold; color: white; font-family: 'Segoe UI';">e</strong><span class="logo-lg-text-dark" style="font-family: 'Segoe UI'; color: white;">Work</span>
                     </span>
                     <span class="logo-sm">
                         <img src="{{ asset('root/hyp/assets/images/logo-sm.png') }}" alt="" height="25">
@@ -356,8 +362,7 @@
                 <a href="" class="logo logo-dark">
                     <span class="logo-lg">
                         <img src="{{ asset('root/hyp/assets/images/logo-sm.png') }}" alt="" height="25">
-                        <strong class="text-white" style="font-size: 22px; weight: bold">e</strong><span
-                            class="logo-lg-text-light">Work</span>
+                        <strong style="font-size: 22px; font-weight: bold; color: #4C52A3; font-family: 'Segoe UI';">e</strong><span class="logo-lg-text-dark" style="font-family: 'Segoe UI'; color: #4C52A3;">Work</span>
                     </span>
                     <span class="logo-sm">
                         <img src="{{ asset('root/hyp/assets/images/logo-sm.png') }}" alt="small logo">
@@ -1507,6 +1512,7 @@
             </div>
 
         </div>
+        
         <div class="offcanvas-footer border-top p-3 text-center">
             <div class="row">
                 <div class="col-6">
@@ -1524,7 +1530,7 @@
     <!-- Vendor js -->
     <script src="{{ asset('root/hyp/assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('root/hyp/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('root/hyp/assets/vendor/select2/js/select2.min.js') }}"></script>
+   
 
     <!-- Apex Chart Candlestick Demo js -->
     <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
@@ -1564,13 +1570,22 @@
 
 
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
+    <script src="{{ asset('root/hyp/assets/vendor/select2/js/select2.min.js') }}"></script>
 
     @yield('additional-js')
 
     <script>
         $(document).ready(function ()
         {
+            $('.select2').each(function() { 
+                $(this).select2({
+                    dropdownParent: $(this).parent(),
+                    width: '100%'
+                });
+                // $(this).val($(this).find('option:first').val()).trigger('change');
+            });
+
+
             //======= HANDLING THE COLLAPSE OF THE SIDE NAV =========================
 
             $('.side-nav-link[data-bs-toggle="collapse"]').on('click', function () {
@@ -1594,3 +1609,9 @@
 </body>
 
 </html>
+
+
+
+
+
+

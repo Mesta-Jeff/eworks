@@ -37,7 +37,7 @@
                             whatever you want to do, have been listed in the dropdown list, choose your choice and the system will execute the action...
                         </p>
 
-                        <select id="modal-action" class="form-control form-select">
+                        <select id="modal-action" class="select2 form-control mb-2" data-toggle="select2">
                             <option value="" selected>Choose...</option>
                             <option value="countries">View Countries</option>
                             <option value="regions">View Regions</option>
@@ -95,7 +95,6 @@
                 showModalContent(selectedValue);
             }
         });
-
 
 
     });
